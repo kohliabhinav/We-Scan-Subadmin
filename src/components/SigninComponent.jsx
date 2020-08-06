@@ -84,8 +84,8 @@ class Signin extends Component {
             
                         <Row className="form-group">
                             <div id="recaptcha-container"></div>
- 
-                                <Button type="submit" onClick="phoneAuth();" color="secondary" style={{ borderRadius: '100px', height: '56px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'center', alignSelf: 'center', width: '350px' }}>
+
+                                <Button type="submit" href="./Verify" onClick="phoneAuth();" color="secondary" style={{ borderRadius: '100px', height: '56px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'center', alignSelf: 'center', width: '350px' }}>
                             Done
                             </Button>
                         
