@@ -1,106 +1,111 @@
-import React,{Component} from 'react';
-import {Breadcrumb, BreadcrumbItem,Button,Label,Row,Col} from 'reactstrap'
-import {Link} from 'react-router-dom'
-import {Control,Form,Errors} from 'react-redux-form'
-
-const required =(val) =>val&&val.length;
-const maxLength = (len)=>(val)=>!(val)||(val.length<=len)
-const minLength = (len)=>(val)=>(val)&&(val.length>=len)
-const isNumber = (val)=>!isNaN(Number(val))
-const validEmail = (val)=>/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val)
+import React from 'react';
+import './style.css';
 
 
-class Signin extends Component {
-    handleSubmit=(values)=>
-    {
-        this.props.postFeedback(values)
-        this.props.resetFeedbackForm()
+class RegisterForm extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            fields: {},
+            errors: {}
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
+
+    };
+
+    handleChange(e) {
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+        this.setState({
+            fields
+        });
+
     }
 
-    render() { 
-        return ( 
-            <div className="container">
-             <div className="row">
-            
-                    <div className="col-12">
-                        <h1 style={{ fontFamily: "Roboto", marginLeft: '40px', fontSize: "28", width: "174", height: "37", letterSpacing:"38" }}> Please Enter</h1>
-                    </div>
-            </div>
+    submituserRegistrationForm(e) {
+        e.preventDefault();
+        if (this.validateForm()) {
+            let fields = {};
+            fields["username"] = "";
+            fields["emailid"] = "";
+            fields["mobileno"] = "";
+            fields["password"] = "";
+            this.setState({ fields: fields });
+            alert("Form submitted");
+        }
 
-            
-            <div className="row row-content">
-                <div className="col-12 col-md-9">
-                       <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
-        <Row className="form-group">
-                                
-                                <Col md={10}>
-                                    <Control.text model=".fullname" id="fullname" name="fullname" style={{ width: "290px", marginLeft: '10px', height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius:"6px" }}
-                                        placeholder="Full Name" 
-                                    className="form-control"
-                                        validators={{
-                                            required, minLength: minLength(3), maxLength: maxLength(15)
-                                        }} 
-                                         />
-                                    <Errors
-                                        className="text-danger"
-                                        model=".fullname"
-                                        show="touched"
-                                        messages={{
-                                            required: 'Required  ',
-                                            minLength: 'Must be greater than 2 characters',
-                                            maxLength: 'Must be 15 characters or less'
-                                        }}
-                                     />
-                                </Col>
-                            </Row>
-                          
-                            <Row className="form-group" onSubmit={this.onSignInSubmit}>
-                                <div id="recaptcha-container"></div>
-                                                      <Col md={10}>
-                            <Control.text  
-                            id="telnum"
-                                        name="telnum" style={{ width: "290px", marginLeft: '10px', height: "56px", borderRadius: "6px",fontFamily: "Roboto", fontSize: "16" }}
-                            model=".telnum"
-                            className="form-control" 
-                            validators={{
-                                required,minLength:minLength(7),maxLength:maxLength(10),isNumber
-                            }}
-                                        placeholder="Mobile Number" 
-                                       
-                            />
-                            <Errors
-                            className="text-danger"
-                            model=".telnum"
-                            show="touched"
-                            messages={{
-                                required:'Required ',
-                                minLength:'Mush be greater than 7 numberss',
-                                maxLength:'Must be 10 numberss or less',
-                                isNumber:'Must be a number'
-                            }}
-                            />
-                        </Col>
-                    </Row>
-            
-                        <Row className="form-group">
-                            <div id="recaptcha-container"></div>
-
-                                <Button type="submit" href="./Verify" onClick="phoneAuth();" color="secondary" style={{ borderRadius: '100px', height: '56px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'center', alignSelf: 'center', width: '350px' }}>
-                            Done
-                            </Button>
-                        
-                        
-                    
-                    </Row>
-
-                </Form>
-                
-                </div>
-            </div>
-        </div>
-
-         );
     }
+
+    validateForm() {
+
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+
+        if (!fields["username"]) {
+            formIsValid = false;
+            errors["username"] = "*Please enter your username.";
+        }
+
+        if (typeof fields["username"] !== "undefined") {
+            if (!fields["username"].match(/^[a-zA-Z ]*$/)) {
+                formIsValid = false;
+                errors["username"] = "*Please enter alphabet characters only.";
+            }
+        }
+        
+
+        if (!fields["mobileno"]) {
+            formIsValid = false;
+            errors["mobileno"] = "*Please enter your mobile no.";
+        }
+
+        if (typeof fields["mobileno"] !== "undefined") {
+            if (!fields["mobileno"].match(/^[0-9]{10}$/)) {
+                formIsValid = false;
+                errors["mobileno"] = "*Please enter valid mobile no.";
+            }
+        }
+
+
+        this.setState({
+            errors: errors
+        });
+        return formIsValid;
+
+
+    }
+
+
+
+    render() {
+        return (
+            <div id="main-registration-container" style={{
+                paddingTop: "150px"
+            }}>
+                <center><div id="register">
+                    <h1 style={{ fontFamily: "Roboto" }}>Please Enter</h1><br/><br/>
+                    <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
+                        
+                        <input type="text" name="username" placeholder="Full Name" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius: "6px" }} value={this.state.fields.username} onChange={this.handleChange} />
+                        <div className="errorMsg">{this.state.errors.username}</div><br/>
+                        
+                        
+                        <input type="text" name="mobileno" placeholder="Phone Number" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
+                        <div className="errorMsg">{this.state.errors.mobileno}</div><br/>
+                        
+                        <button style={{ borderRadius: '100px', backgroundColor: 'yellow', width: "280px", height: "56px" }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black" }}>SEND OTP</span></button>
+                    </form>
+                </div></center>
+            </div>
+
+        );
+    }
+
+
 }
- 
-export default Signin;
+
+
+export default RegisterForm;

@@ -1,216 +1,116 @@
-import React,{Component} from 'react';
-import {Breadcrumb, BreadcrumbItem,Button,Label,Row,Col} from 'reactstrap'
-import {Link} from 'react-router-dom'
-import {Control,Form,Errors} from 'react-redux-form'
-
-const required =(val) =>val&&val.length;
-const maxLength = (len)=>(val)=>!(val)||(val.length<=len)
-const minLength = (len)=>(val)=>(val)&&(val.length>=len)
-const isNumber = (val)=>!isNaN(Number(val))
-const validEmail = (val)=>/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val)
+import React from 'react';
+import './style.css';
 
 
-class Subadminsignin extends Component {
-    handleSubmit=(values)=>
-    {
-        this.props.postFeedback(values)
-        this.props.resetFeedbackForm()
+class RegisterForm extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            fields: {},
+            errors: {}
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
+
+    };
+
+    handleChange(e) {
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+        this.setState({
+            fields
+        });
+
     }
 
-    render() { 
-        return ( 
-            <div className="container">
-             <div className="row">
-                    <img src="./assets/images/Welcome.svg" style={{ width: "320px", height: "246px",marginLeft:'3px',leftMargin:'100px' }} /><br /><br />
+    submituserRegistrationForm(e) {
+        e.preventDefault();
+        if (this.validateForm()) {
+            let fields = {};
+            fields["mobileno"] = "";
+            fields["password"] = "";
+            this.setState({ fields: fields });
+            alert("Form submitted");
+        }
 
-                    <div className="col-12">
-                        <h1 style={{ fontFamily: "Roboto", fontSize: "28", width: "174", height: "37", letterSpacing:"38" }}> Please Enter</h1>
-                    </div>
-            </div>
+    }
 
-            {/*<div className="row row-content">
-                <div className="col-12">
-                <h3>Location Information</h3>
-                </div>
-                <div className="col-12 col-sm-4 offset-sm-1">
-                        <h5>Our Address</h5>
-                        <address>
-                        121, Clear Water Bay Road<br />
-                        Clear Water Bay, Kowloon<br />
-                        HONG KONG<br />
-                        <i className="fa fa-phone"></i>: +852 1234 5678<br />
-                        <i className="fa fa-fax"></i>: +852 8765 4321<br />
-                        <i className="fa fa-envelope"></i>: <a href="mailto:confusion@food.net">confusion@food.net</a>
-                        </address>
-                </div>
-                <div className="col-12 col-sm-6 offset-sm-1">
-                    <h5>Map of our Location</h5>
-                </div>
-                <div className="col-12 col-sm-11 offset-sm-1">
-                    <div className="btn-group" role="group">
-                        <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
-                        <a role="button" className="btn btn-info" href="/"><i className="fa fa-skype"></i> Skype</a>
-                        <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><i className="fa fa-envelope-o"></i> Email</a>
-                    </div>
-                </div>
-            </div>*/}
-            <div className="row row-content">
-                <div className="col-12 col-md-9">
-                       <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
-        <Row className="form-group">
-                                
-                                <Col md={10}>
-                                    <Control.text model=".fullname" id="fullname" name="fullname" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius:"6px" }}
-                                        placeholder="Full Name" 
-                                    className="form-control"
-                                        validators={{
-                                            required, minLength: minLength(3), maxLength: maxLength(15)
-                                        }} 
-                                         />
-                                    <Errors
-                                        className="text-danger"
-                                        model=".fullname"
-                                        show="touched"
-                                        messages={{
-                                            required: 'Required  ',
-                                            minLength: 'Must be greater than 2 characters',
-                                            maxLength: 'Must be 15 characters or less'
-                                        }}
-                                     />
-                                </Col>
-                            </Row>
-                            {/*<Row className="form-group">
-                        <Label htmlFor="lastname" md={2}>Last Name</Label>
-                        <Col md={10}>
-                            <Control.text 
-                            id="lastname"
-                            name="lastname"
-                            model=".lastname"
-                            className="form-control" 
-                            validators={{
-                                required,minLength:minLength(3),maxLength:maxLength(15)
-                            }}
-                            placeholder="Last Name" 
-                            />
+    validateForm() {
 
-                            <Errors
-                                        className="text-danger"
-                                        model=".lastname"
-                                        show="touched"
-                                        messages={{
-                                            required: '*Required ',
-                                            minLength: '*Must be greater than 2 characters ',
-                                            maxLength: '*Must be 15 characters or less '
-                                        }}
-                                     />
-                        </Col>
-                    </Row>*/}
-            <Row className="form-group">
-                                                      <Col md={10}>
-                            <Control.text  
-                            id="telnum"
-                                        name="telnum" style={{ width: "260px", height: "56px", borderRadius: "6px",fontFamily: "Roboto", fontSize: "16" }}
-                            model=".telnum"
-                            className="form-control" 
-                            validators={{
-                                required,minLength:minLength(7),maxLength:maxLength(10),isNumber
-                            }}
-                                        placeholder="Mobile Number" 
-                            />
-                            <Errors
-                            className="text-danger"
-                            model=".telnum"
-                            show="touched"
-                            messages={{
-                                required:'Required ',
-                                minLength:'Mush be greater than 7 numberss',
-                                maxLength:'Must be 10 numberss or less',
-                                isNumber:'Must be a number'
-                            }}
-                            />
-                        </Col>
-                    </Row><br/>
-            {/*<Row className="form-group">
-                        <Label htmlFor="email" md={2}>Email</Label>
-                        <Col md={10}>
-                            <Control.text 
-                            id="email"
-                            name="email"
-                            model=".email"
-                            className="form-control" 
-                            validators={{
-                                required,validEmail
-                            }}
-                            placeholder="Email" 
-                            />
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
 
-                            <Errors
-                            className="text-danger"
-                            model=".email"
-                            show="touched"
-                            messages={{
-                                required:'Required ',
-                                validEmail:'Invalid email address'
-                            }}
-                            />
-                        </Col>
-                            </Row>
-            <Row className="form-group">
-                        <Col md={{size:6, offset:2}}>
-                            <div className="form-check">
-                                <Label check>
-                                    <Control.checkbox 
-                                    id="agree"
-                                    name="agree"
-                                    model=".agree"
-                                    
-                                    className="form-check-input"/>
-                                    <strong>May we contact you?</strong>
-                                </Label>
-                            </div>
-                        </Col>
-                        <Col md={{size:3, offset:1}}>
-                            <Control.select
-                            id="contactType"
-                            name="contactType" 
-                            model=".contactType"
-                            className="form-control"
-                             
-                            >
-                                <option>Tel.</option>
-                                <option>Email</option>
-                            </Control.select>
-                            </Col>
-                    </Row>
-            <Row className="form-group">
-                        <Label htmlFor="message" md={2}>Your Feedback</Label>
-                        <Col md={10}>
-                            <Control.textarea 
-                            model=".message"
-                            className="form-control"
-                            id="message" name="message"
-                            rows="12"
-                            />
-                        </Col>
-                    </Row>*/}
-            <Row className="form-group">
-  
-                                <Button type="submit" color="secondary" style={{ borderRadius: '100px', height: '56px', width: '290px' }}>
-                            Done
-                            </Button>
+       
+        if (!fields["mobileno"]) {
+            formIsValid = false;
+            errors["mobileno"] = "*Please enter your mobile no.";
+        }
+
+        if (typeof fields["mobileno"] !== "undefined") {
+            if (!fields["mobileno"].match(/^[0-9]{10}$/)) {
+                formIsValid = false;
+                errors["mobileno"] = "*Please enter valid mobile no.";
+            }
+        }
+
+        if (!fields["password"]) {
+            formIsValid = false;
+            errors["password"] = "*Please enter your password.";
+        }
+
+        if (typeof fields["password"] !== "undefined") {
+            if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+                formIsValid = false;
+                errors["password"] = "*Please enter secure and strong password.";
+            }
+        }
+
+        this.setState({
+            errors: errors
+        });
+        return formIsValid;
+
+
+    }
+
+
+
+    render() {
+        return (
+            <center><div id="main-registration-container" style={{
+                padding: "20px"
+            }}>
+                <center><img src="./assets/images/Welcome.svg" alt="welcome" style={{ width: "200px", height: "148px", marginLeft: '3px', leftMargin: '100px' }} /></center>
+                <div id="register">
+
+                    <br /><br /><center><h3 style={{ fontFamily: "Roboto", fontSize: "28", width: "328", height: "491", letterSpacing: "38" }}>Sign In</h3></center><br/>
+                    <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
+                       
+
+                        <input type="text" name="mobileno" placeholder="Phone Number" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
+                        <div className="errorMsg">{this.state.errors.mobileno}</div>
+
+                        <input type="password" name="password" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius: "6px" }}placeholder="Password" value={this.state.fields.password} onChange={this.handleChange} />
+                        <div className="errorMsg">{this.state.errors.password}</div><br />
+                        <button style={{ borderRadius: '100px', backgroundColor: 'yellow', width: "280px", height: "56px" }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black" }}>SIGN IN</span></button><br/>
                         
+                            <br/><p><u> Forgot Password</u></p>
                         
+                    </form>
                     
-                    </Row>
-
-                </Form>
-                
                 </div>
-            </div>
-        </div>
+                <center><footer>
+                    <p>Don't have an account? Sign Up </p>
+                </footer></center>
+            </div></center>
 
-         );
+        );
     }
+
+
 }
- 
-export default Subadminsignin;
+
+
+export default RegisterForm;
