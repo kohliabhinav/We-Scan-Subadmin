@@ -2,6 +2,8 @@ import React from 'react';
 import './style.css';
 
 
+
+
 class RegisterForm extends React.Component {
     constructor() {
         super();
@@ -42,7 +44,7 @@ class RegisterForm extends React.Component {
         let errors = {};
         let formIsValid = true;
 
-       
+
         if (!fields["mobileno"]) {
             formIsValid = false;
             errors["mobileno"] = "*Please enter your mobile no.";
@@ -76,41 +78,41 @@ class RegisterForm extends React.Component {
     }
 
 
+    
+        render() {
+            return (
+                <center><div id="main-registration-container" style={{
+                    padding: "20px"
+                }}>
+                    <center><img src="./assets/images/Welcome.svg" alt="welcome" style={{ width: "200px", height: "148px", marginLeft: '3px', leftMargin: '100px' }} /></center>
+                    <div id="register">
 
-    render() {
-        return (
-            <center><div id="main-registration-container" style={{
-                padding: "20px"
-            }}>
-                <center><img src="./assets/images/Welcome.svg" alt="welcome" style={{ width: "200px", height: "148px", marginLeft: '3px', leftMargin: '100px' }} /></center>
-                <div id="register">
+                        <br /><br /><center><h3 style={{ fontFamily: "Roboto", fontSize: "28", width: "328", height: "491", letterSpacing: "38" }}>Sign In</h3></center><br />
+                        <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
 
-                    <br /><br /><center><h3 style={{ fontFamily: "Roboto", fontSize: "28", width: "328", height: "491", letterSpacing: "38" }}>Sign In</h3></center><br/>
-                    <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
-                       
 
-                        <input type="text" name="mobileno" placeholder="Phone Number" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
-                        <div className="errorMsg">{this.state.errors.mobileno}</div>
+                            <input type="text" name="mobileno" placeholder="&#xF007; Phone Number" style={{ width: "260px", height: "56px", fontFamily: "FontAwesome", fontSize: "16", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
+                            <div className="errorMsg">{this.state.errors.mobileno}</div>
 
-                        <input type="password" name="password" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius: "6px" }}placeholder="Password" value={this.state.fields.password} onChange={this.handleChange} />
-                        <div className="errorMsg">{this.state.errors.password}</div><br />
-                        <button style={{ borderRadius: '100px', backgroundColor: 'yellow', width: "280px", height: "56px" }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black" }}>SIGN IN</span></button><br/>
-                        
-                            <br/><p><u> Forgot Password</u></p>
-                        
-                    </form>
-                    
-                </div>
-                <center><footer>
-                    <p>Don't have an account? Sign Up </p>
-                </footer></center>
-            </div></center>
+                            <input type="password" name="password" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius: "6px" }} placeholder="Password" value={this.state.fields.password} onChange={this.handleChange} />
+                            <div className="errorMsg">{this.state.errors.password}</div><br />
+                            <button style={{ borderRadius: '100px', backgroundColor: 'yellow', width: "280px", height: "56px", }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black" }}>SIGN IN</span></button><br />
 
-        );
+                            <br /><p><u> Forgot Password</u></p>
+
+                        </form>
+
+                    </div>
+                    <center><footer>
+                        <p>Don't have an account? Sign Up </p>
+                    </footer></center>
+                </div></center>
+
+            );
+        }
+
+
     }
-
-
-}
 
 
 export default RegisterForm;
