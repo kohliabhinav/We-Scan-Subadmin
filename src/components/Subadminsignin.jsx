@@ -98,7 +98,9 @@ class RegisterForm extends React.Component {
                             <div className="errorMsg">{this.state.errors.password}</div><br />
                             <button style={{ borderRadius: '100px', backgroundColor: 'yellow', width: "280px", height: "56px", }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black" }}>SIGN IN</span></button><br />
 
-                            <br /><p><u> Forgot Password</u></p>
+                            <br />  <a href="#" style={{
+                                fontFamily: "Roboto", fontSize: "16", width: "88", height: "21", letterSpacing: "38"
+                            }}>Forgot Password?</a><br /><br />
 
                         </form>
 
