@@ -87,26 +87,31 @@ class RegisterForm extends React.Component {
                     <center><img src="./assets/images/Welcome.svg" alt="welcome" style={{ width: "200px", height: "148px", marginLeft: '3px', leftMargin: '100px' }} /></center>
                     <div id="register">
 
-                        <br /><br /><center><h3 style={{ fontFamily: "Roboto", fontSize: "28", width: "328", height: "491", letterSpacing: "38" }}>Sign In</h3></center><br />
+                        <br /><br /><center><h3 style={{ fontFamily: "Roboto", fontSize: "28px", width: "90", height: "33px", letterSpacing: "0.56px" }}><b>Sign In</b></h3></center><br />
                         <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
 
 
-                            <input type="text" name="mobileno" placeholder="&#xF007; Phone Number" style={{ width: "260px", height: "56px", fontFamily: "FontAwesome", fontSize: "16", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
+                            <input type="text" name="mobileno" placeholder="&#xF007;&nbsp;&nbsp; Phone Number" style={{ width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
                             <div className="errorMsg">{this.state.errors.mobileno}</div>
 
-                            <input type="password" name="password" style={{ width: "260px", height: "56px", fontFamily: "Roboto", fontSize: "16", borderRadius: "6px" }} placeholder="Password" value={this.state.fields.password} onChange={this.handleChange} />
+                            <input type="password" name="password" placeholder="&#xF007;&nbsp;&nbsp; Password" style={{
+                                width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.password} onChange={this.handleChange} />
                             <div className="errorMsg">{this.state.errors.password}</div><br />
-                            <button style={{ borderRadius: '100px', backgroundColor: 'yellow', width: "280px", height: "56px", }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black" }}>SIGN IN</span></button><br />
+                            <button style={{ borderRadius: '50px', backgroundColor: 'yellow', width: "280px", height: "56px", }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black", width: "82px", height: "21px", fontFamily: "Roboto" }}><b>SIGN IN</b></span></button><br />
 
                             <br />  <a href="#" style={{
-                                fontFamily: "Roboto", fontSize: "16", width: "88", height: "21", letterSpacing: "38"
+                                fontFamily: "Roboto", fontSize: "11px", width: "114px", height: "15px", letterSpacing: "38"
                             }}>Forgot Password?</a><br /><br />
 
                         </form>
 
                     </div>
                     <center><footer>
-                        <p>Don't have an account? Sign Up </p>
+                        <p style={{
+                            fontFamily: "Roboto", fontSize: "16px", width: "226px", height: "21px", letterSpacing: "38"
+                        }}>Don't have an account?  <a href="#" style={{
+                            fontFamily: "Roboto", fontSize: "11px", width: "226px", height: "21px", letterSpacing: "38"
+                        }}>Sign Up</a></p>
                     </footer></center>
                 </div></center>
 
