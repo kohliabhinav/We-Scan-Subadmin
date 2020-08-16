@@ -82,24 +82,26 @@ class RegisterForm extends React.Component {
         render() {
             return (
                 <center><div id="main-registration-container" style={{
-                    padding: "20px"
+                    padding: "25px"
                 }}>
                     <center><img src="./assets/images/Welcome.svg" alt="welcome" style={{ width: "200px", height: "148px", marginLeft: '3px', leftMargin: '100px' }} /></center>
-                    <div id="register">
+                    <div id="register" style={{
+                        boxShadow: "5px 5px 40px 0 rgba(1, 5, 38, 0.1)", width: "328px", height: "444px", borderRadius:"20px"
+                    }}>
 
                         <br /><br /><center><h3 style={{ fontFamily: "Roboto", fontSize: "28px", width: "90", height: "33px", letterSpacing: "0.56px" }}><b>Sign In</b></h3></center><br />
-                        <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
+                        <br/><form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
 
 
-                            <input type="text" name="mobileno" placeholder="&#xF007;&nbsp;&nbsp; Phone Number" style={{ width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
-                            <div className="errorMsg">{this.state.errors.mobileno}</div>
+                            <input className="hi" type="text" name="mobileno" placeholder="&#xF007;&nbsp;&nbsp; Phone Number" style={{ width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
+                            <div className="errorMsg">{this.state.errors.mobileno}</div><br/>
 
-                            <input type="password" name="password" placeholder="&#xF007;&nbsp;&nbsp; Password" style={{
+                            <input className="hi" type="password" name="password" placeholder="&#xF007;&nbsp;&nbsp; Password" style={{
                                 width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.password} onChange={this.handleChange} />
-                            <div className="errorMsg">{this.state.errors.password}</div><br />
-                            <button style={{ borderRadius: '50px', backgroundColor: 'yellow', width: "280px", height: "56px", }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black", width: "82px", height: "21px", fontFamily: "Roboto" }}><b>SIGN IN</b></span></button><br />
+                            <div className="errorMsg">{this.state.errors.password}</div><br /><br/>
+                            <button style={{ borderRadius: '50px', width: "280px", height: "56px", }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black", width: "82px", height: "21px", fontFamily: "Roboto" }}><b>SIGN IN</b></span></button><br />
 
-                            <br />  <a href="#" style={{
+                            <br/><br />  <a href="#" style={{
                                 fontFamily: "Roboto", fontSize: "11px", width: "114px", height: "15px", letterSpacing: "38"
                             }}>Forgot Password?</a><br /><br />
 

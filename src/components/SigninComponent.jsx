@@ -29,9 +29,7 @@ class RegisterForm extends React.Component {
         if (this.validateForm()) {
             let fields = {};
             fields["username"] = "";
-            fields["emailid"] = "";
             fields["mobileno"] = "";
-            fields["password"] = "";
             this.setState({ fields: fields });
             alert("Form submitted");
         }
@@ -88,15 +86,15 @@ class RegisterForm extends React.Component {
                 <center><div id="register">
                     <h1 style={{ fontFamily: "Roboto" }}><b>Please Enter</b></h1><br/><br/>
                     <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
-                        
-                        <input type="text" name="username" placeholder="&#xF007;&nbsp;&nbsp; Full Name" style={{ width: "290px", height: "56px", fontSize: "16px", borderRadius: "6px", fontFamily: '"FontAwesome","Roboto"'  }} value={this.state.fields.username} onChange={this.handleChange} />
-                        <div className="errorMsg">{this.state.errors.username}</div><br/>
 
-                        
-                        <input type="text" name="mobileno" placeholder="&#xF007;&nbsp;&nbsp;Phone Number" style={{ width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
-                        <div className="errorMsg">{this.state.errors.mobileno}</div><br/>
+                        <input type="text" className="hi" name="username" placeholder="&#xF007;&nbsp;&nbsp; Full Name" style={{ width: "290px", height: "56px", fontSize: "16px", borderRadius: "6px", fontFamily: '"FontAwesome","Roboto"' }} value={this.state.fields.username} onChange={this.handleChange} />
+                        <p className="errorMsg">{this.state.errors.username}</p><br/>
 
-                        <button style={{ borderRadius: '50px', backgroundColor: 'yellow', width: "290px", height: "56px" }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black", width: "82px", height: "21px", fontFamily:"Roboto" }}><b>SEND OTP</b></span></button>
+
+                        <input type="text" className="hi" name="mobileno" placeholder="&#xF007;&nbsp;&nbsp;Phone Number" style={{ width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
+                        <div className="errorMsg">{this.state.errors.mobileno}</div><br/><br/>
+
+                        <button style={{ borderRadius: '50px', width: "290px", height: "56px" }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black", width: "82px", height: "21px", fontFamily:"Roboto" }}><b>SEND OTP</b></span></button>
                     </form>
                 </div></center>
             </div>
