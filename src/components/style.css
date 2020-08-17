@@ -1,42 +1,112 @@
 #register, #login {
   width: 320px;
-  border: 1px solid #d6d7da;
+  
   padding: 0px 15px 15px 15px;
   border-radius: 5px;
   font-family: arial;
   line-height: 16px;
   color: #333333;
   font-size: 14px;
-  background: #ffffff;
+  background: #fffff;
   margin: 10px auto;
 }
+    #register, #login.border:hover. {
+        color: blue;
+        background: #f6b93b;
+        border-color: #f6b93b;
+        transition: all 0.4s ease 0s;
+    }
 
-form label, form input {
-  display: block;
-  //margin-bottom: 10px;
-  width: 90%
-}
+    
 
 form input {
   padding: 10px;
   border: solid 1px #BDC7D8;
 
 }
-
-.button {
-  background-color: #00BFFF;
-  border-color: #3ac162;
-  font-weight: bold;
-  padding: 12px 15px;
-  color: #ffffff;
+.intro:hover {
+    color: red;
 }
+
+
 
 .errorMsg {
   color: #cc0000;
   margin-bottom: 12px;
+
 }
 
 .sucessMsg {
   color: #6B8E23;
   margin-bottom: 10px;
 }
+
+
+.button {
+    color: #494949;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 20px;
+    font-size: 20px;
+    border: 4px solid #494949;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+}
+
+    .button:hover {
+        color: blue;
+        background: yellow;
+        border-color: yellow;
+        transition: all 0.4s ease 0s;
+    }
+
+.button--primary {
+    color: yellow;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: yellow;
+    padding: 20px;
+    font-size: 20px;
+    border: 4px solid yellow;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+}
+
+    .button--primary:hover {
+        color: yellow;
+        background: yellow;
+        border-color: yellow;
+        transition: all 0.4s ease 0s;
+    }
+
+
+
+
+
+input {
+    width: 100%;
+    border: 50px;
+    outline: 50px;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid #010526;
+    box-shadow: #010526;
+    color: #010526;
+}
+.hi {
+    color: #B8BBC6;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 20px;
+    font-size: 20px;
+    border: 1px solid #B8BBC6;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+}
+
+    .hi:hover {
+        color: #010526;
+        border-color: #010526;
+        transition: all 0.4s ease 0s;
+    }
