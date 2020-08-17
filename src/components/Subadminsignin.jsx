@@ -90,7 +90,7 @@ class RegisterForm extends React.Component {
                     }}>
 
                         <br /><br /><center><h3 style={{ fontFamily: "Roboto", fontSize: "28px", width: "90", height: "33px", letterSpacing: "0.56px" }}><b>Sign In</b></h3></center><br />
-                        <br/><form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
+                        <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
 
 
                             <input className="hi" type="text" name="mobileno" placeholder="&#xF007;&nbsp;&nbsp; Phone Number" style={{ width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />

@@ -94,20 +94,19 @@ input {
     color: #010526;
 }
 .hi {
-    color: #494949;
+    color: #B8BBC6;
     text-transform: uppercase;
     text-decoration: none;
     background: #ffffff;
     padding: 20px;
     font-size: 20px;
-    border: 1px solid #494949;
+    border: 1px solid #B8BBC6;
     display: inline-block;
     transition: all 0.4s ease 0s;
 }
 
     .hi:hover {
-        color: blue;
-        
-        border-color: yellow;
+        color: #010526;
+        border-color: #010526;
         transition: all 0.4s ease 0s;
     }
