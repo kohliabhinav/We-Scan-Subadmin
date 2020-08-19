@@ -93,6 +93,11 @@ input {
     box-shadow: #010526;
     color: #010526;
 }
+
+::placeholder {
+    color: #b8bbc6;
+    font-size: 16px;
+}
 .hi {
     color: #B8BBC6;
     text-transform: uppercase;

@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
+    "\\public",
+    "\\public\\assets",
+    "\\public\\assets\\images",
     "\\src\\components"
   ],
-  "SelectedNode": "\\src\\components\\ActivevisitorsComponent.js",
+  "SelectedNode": "\\public\\assets\\images\\Group 4028.png",
   "PreviewInSolutionExplorer": false
 }

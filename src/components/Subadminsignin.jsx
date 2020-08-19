@@ -82,7 +82,7 @@ class RegisterForm extends React.Component {
         render() {
             return (
                 <center><div id="main-registration-container" style={{
-                    padding: "25px"
+                    padding: "0px"
                 }}>
                     <center><img src="./assets/images/Welcome.svg" alt="welcome" style={{ width: "200px", height: "148px", marginLeft: '3px', leftMargin: '100px' }} /></center>
                     <div id="register" style={{
@@ -107,9 +107,9 @@ class RegisterForm extends React.Component {
 
                         </form>
 
-                    </div>
+                   <br/> </div>
                     <center><footer>
-                        <p style={{
+                        <br/><p style={{
                             fontFamily: "Roboto", fontSize: "16px", width: "226px", height: "21px", letterSpacing: "38"
                         }}>Don't have an account?  <a href="#" style={{
                             fontFamily: "Roboto", fontSize: "11px", width: "226px", height: "21px", letterSpacing: "38"
