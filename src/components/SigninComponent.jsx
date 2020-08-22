@@ -93,7 +93,7 @@ class RegisterForm extends React.Component {
                         <input type="text" className="hi" fontSize="16px" name="mobileno" placeholder="&#xF007;&nbsp;&nbsp;Phone Number" style={{ width: "290px", height: "56px", fontFamily: '"FontAwesome","Roboto"', fontSize: "16px", borderRadius: "6px" }} value={this.state.fields.mobileno} onChange={this.handleChange} />
                         <div className="errorMsg">{this.state.errors.mobileno}</div><br/><br/>
 
-                        <button style={{ borderRadius: '50px', width: "290px", height: "56px" }} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black", width: "82px", height: "21px", fontFamily:"Roboto" }}><b>SEND OTP</b></span></button>
+                        <button style={{ borderRadius: '50px', width: "290px", height: "56px" , borderWidth:"1px"}} type="submit" className="button" value="SEND OTP" ><span style={{ color: "black", textAlign:"center", fontFamily:"Roboto" }}><b>SEND OTP</b></span></button>
                     </form>
                 </div></center>
             </div>
