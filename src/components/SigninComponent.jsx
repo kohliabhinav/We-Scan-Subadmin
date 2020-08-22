@@ -78,6 +78,7 @@ class RegisterForm extends React.Component {
 
 
 
+
     render() {
         return (
             <div id="main-registration-container" style={{
