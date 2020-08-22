@@ -5,6 +5,7 @@ import Signin from './SigninComponent';
 import Subadminsignin from './Subadminsignin';
 import Doublecheck from './doublecheckcomponent';
 import Active from './ActivevisitorsComponent';
+import Reset from './ResetComponent';
 
 class Main extends Component {
 
@@ -16,6 +17,7 @@ class Main extends Component {
           <Route exact path='/Subadminsignin' component={() => <Subadminsignin resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
           <Route exact path='/Doublecheck' component={() => <Doublecheck resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
           <Route exact path='/Active' component={() => <Active resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
+                <Route exact path='/Reset' component={() => <Reset resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
           
                         <Redirect to="/Subadminsignin" />
         </Switch>
