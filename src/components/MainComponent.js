@@ -2,10 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import Signin from './SigninComponent';
-import Subadminsignin from './Subadminsignin';
-import Doublecheck from './doublecheckcomponent';
+import Subadminsignin from './SubAdminSigninComponent';
+import Doublecheck from './DoubleCheckComponent';
 import Active from './ActivevisitorsComponent';
 import Reset from './ResetComponent';
+import Verify from './VerifyComponent';
 
 class Main extends Component {
 
@@ -13,13 +14,14 @@ class Main extends Component {
     return (
     <div>
         <Switch>
-          <Route exact path='/signin' component={() => <Signin resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
-          <Route exact path='/Subadminsignin' component={() => <Subadminsignin resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
-          <Route exact path='/Doublecheck' component={() => <Doublecheck resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
-          <Route exact path='/Active' component={() => <Active resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
-                <Route exact path='/Reset' component={() => <Reset resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
+          <Route exact path='/verify' component={Verify} render={props=> <Verify {...props}  />} />
+          <Route exact path='/userSignIn' component={() => <Signin resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
+          <Route exact path='/login' component={() => <Subadminsignin resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
+          <Route exact path='/doubleCheck' component={() => <Doublecheck resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
+          <Route exact path='/active' component={() => <Active resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
+                <Route exact path='/reset' component={() => <Reset resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback} />} />
           
-                        <Redirect to="/Subadminsignin" />
+                  <Redirect to="/login" />
         </Switch>
     </div>
     );
