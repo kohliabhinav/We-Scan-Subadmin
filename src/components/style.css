@@ -1,24 +1,17 @@
 #register,
+#reset,
 #login {
     width: 320px;
     padding: 0px 15px 15px 15px;
     border-radius: 5px;
     font-family: arial;
     line-height: 16px;
-    color: #333333;
+    background-color: #fff;
     font-size: 14px;
-    background: #fffff;
     margin: 10px auto;
 }
 
 
-#register,
-#login.border:hover. {
-    color: blue;
-    background: #f6b93b;
-    border-color: #f6b93b;
-    transition: all 0.4s ease 0s;
-}
 
 form input {
     padding: 10px;
@@ -134,9 +127,9 @@ input {
 }
 
  #loader {
-    position: absolute;
+    position: fixed;
     top: 40%;
-    left: 40%;
+    left: 45%;
 } 
 
 #skipOtpText {
@@ -152,4 +145,74 @@ input {
   letter-spacing: normal;
   text-align: center;
   color: var(--midnight);
+}
+
+.alert {
+    text-align: center;
+    font-size: 16px;
+    padding-left: 70px;
+    padding-right: 70px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+}
+
+h1 {
+    height: 33px;
+    font-family: Roboto;
+    font-size: 28px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.18;
+    letter-spacing: 0.56px;
+    text-align: center;
+    color: #010526;
+}
+
+#subAdminHeaderImage {
+     width: 200px;
+    height: 148px;
+    margin-left : 88px;
+    margin-right: 88px;
+    margin-top: 30px;
+    
+}
+
+
+#tokenExpire {
+    font-family: Roboto;
+    font-size: 16px;
+    padding-left: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: normal;
+    text-align: center;
+    color: #010526;
+}
+
+#countdownTime {
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: normal;
+    text-align: center;
+    color: #721c24;
+}
+
+#resendOtp {
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.31;
+    letter-spacing: normal;
+    text-align: center;
+    color: rgb(1, 5, 38);
 }

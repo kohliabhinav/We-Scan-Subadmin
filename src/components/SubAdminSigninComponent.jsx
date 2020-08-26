@@ -33,7 +33,8 @@ class SubAdminSignIn extends React.Component {
             fields
         });
 
-        e.target.name === "username" ? this.validateUserName() : this.validatePassword()
+        console.log(e.target.name)
+        e.target.name === "phoneNumber" ? this.validateUserName() : this.validatePassword()
 
         
 
@@ -219,11 +220,9 @@ class SubAdminSignIn extends React.Component {
 
                 <section>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert" style={{ visibility: this.state.responseError === null ? "hidden" : "visible" }}>{this.state.responseError}</div>
-                    <center><div id="main-registration-container" style={{
-                        padding: "0px"
-                    }}>
+                    <center><div id="main-registration-container">
 
-                        <center><img src="./assets/images/Welcome.svg" alt="welcome" style={{ width: "200px", height: "148px", marginLeft: '3px', leftMargin: '100px' }} /></center>
+                        <center><img id="subAdminHeaderImage" src="./assets/images/Welcome.svg" alt="welcome"  /></center>
 
                         {this.state.loading && Loading('Signing in...')}
                         <div id="register" style={{
@@ -246,7 +245,8 @@ class SubAdminSignIn extends React.Component {
                                 <div className="errorMsg" style={{ textAlign: "left", marginLeft: "10px" }}>{this.state.errors.password}</div><br /><br />
                                 <button type="submit" className="button" value="Login" 
                                 style={{ background: this.state.isFormValidated ? "rgb(255,248,0)" : "rgba(1, 5, 38, 0.05)" }} 
-                                disabled={!this.state.isFormValidated} ><span class="buttonText">SIGN IN</span></button><br />
+                                disabled={!this.state.isFormValidated} >
+                                    <span class="buttonText" style={{color : this.state.isFormValidated ? "rgba(1,5,38,1.0)" : "rgba(1, 5, 38, 0.5)"}}>SIGN IN</span></button><br />
 
 
                                 <br /><br />  <a href="/Reset" style={{

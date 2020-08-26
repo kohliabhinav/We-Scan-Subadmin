@@ -41,7 +41,8 @@ class Doublecheck extends React.Component {
 
                         <center><img src=".\assets\images\Double Check Man.png" alt="welcome" style={{ width: "120px", height: "161px", marginLeft: '3px', leftMargin: '100px' }} /></center>
                         <br /><center><form>
-                            <br /><button type="submit" className="button-primary" onClick={this.userChecked} ><span className="buttonText"><b>CHECKED</b></span></button>
+                            <br /><button type="submit" className="button-primary" onClick={this.userChecked}>
+                                <span className="buttonText" style={{color : "rgba(1,5,38,1.0)"}}><b>CHECKED</b></span></button>
                             <br /><br /><br /><center>  <p style={{ width: "250px" }}>You must <b>check customer's phone</b> before you press this button</p>
                             </center>
                         </form></center><br /><br />

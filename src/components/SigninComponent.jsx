@@ -6,7 +6,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { Loading } from './LoadingComponent';
 import firebase from "../firebase"
 
-class RegisterForm extends React.Component {
+class UserLoginForm extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -15,7 +15,7 @@ class RegisterForm extends React.Component {
             isFormValidated: false,
             isMobileNumberValidated: false,
             isNameValidated: false,
-            responseError : null,
+            responseError: null,
             loading: false
         }
 
@@ -112,7 +112,8 @@ class RegisterForm extends React.Component {
 
     checkIfTokenExpired() {
         var tokenTime = parseInt(localStorage.getItem('tokenTime'))
-      
+
+        console.log('time diff ' + (new Date().getTime() - tokenTime))
         return ((new Date().getTime() - tokenTime) > 60 * 60 * 1000)
     }
 
@@ -127,21 +128,26 @@ class RegisterForm extends React.Component {
 
         var self = this;
 
-        console.log(localStorage.getItem('authToken'))
-        firebase.auth().signInWithCustomToken(localStorage.getItem('authToken')).then(result => {
+        try {
 
-        firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
-            localStorage.setItem('tokenTime', new Date().getTime())
-            localStorage.setToken('token', idToken)
-            self.login(toSkipOtp)
-        }).catch(function (error) {
-            this.setState({responseError: 'Unable to Login. Please try again!'})
-        });
-    }).catch(error => {
-        self.setState({loading : false})
-        
-        this.setError('Unable to Login. Please try again!')
-    }) 
+            firebase.auth().signInWithCustomToken(localStorage.getItem('authToken')).then(result => {
+
+                firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+                    localStorage.setItem('tokenTime', new Date().getTime())
+                    localStorage.setItem('token', idToken)
+                    self.login(toSkipOtp)
+                }).catch(function (error) {
+                    self.setState({ responseError: 'Unable to Login. Please try again!' })
+                });
+            }).catch(error => {
+                console.log('error while generating token ' + error)
+                self.setError('Unable to Login. Please try again!')
+            })
+
+        } catch(error) {
+            console.log('error while generating token ' + error)
+            self.setError('Unable to Login. Please try again!')
+        }
 
 
     }
@@ -190,23 +196,22 @@ class RegisterForm extends React.Component {
 
             }).then(response => {
                 response.json().then((data) => {
-                    this.setState({ loading: false });
+
 
                     response.ok ? (toSkipOtp ? self.setState({ redirect: '/doubleCheck' }) : self.sendOtp(appVerifier, value)) :
 
-                        (response.status === 422 ? (!toSkipOtp ? this.sendOtp(appVerifier, value) : this.setError(data.message)) : this.setError(data.message))
-
+                        (response.status === 422 ? (!toSkipOtp ? self.sendOtp(appVerifier, value) : self.setError(data.message)) : self.setError(data.message))
 
                 });
             }, error => {
-                this.setState({ loading: false, responseError: error.message });
-                
+                self.setState({ loading: false, responseError: error.message });
+
             })
 
             .catch(error => {
-                this.setState({ loading: false ,responseError : 'Unable to Login. Please try again!'});
+                self.setState({ loading: false, responseError: 'Unable to Login. Please try again!' });
                 console.log('Post comments ', error.message);
-                
+
             });
 
 
@@ -214,7 +219,7 @@ class RegisterForm extends React.Component {
 
 
     setError(message) {
-        this.setState({responseError : message})
+        this.setState({ loading: false, responseError: message })
     }
 
 
@@ -231,19 +236,18 @@ class RegisterForm extends React.Component {
     sendOtp(appVerifier, number) {
         const phoneNumber = "+91" + number;
         var self = this;
-      
+
         firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
             .then(function (confirmationResult) {
-                
 
                 window.confirmationResult = confirmationResult
-                self.setState({ redirect: '/verify' });
+                self.setState({ redirect: '/verify', loading: false });
 
 
 
             }).catch(function (error) {
                 console.log('error' + error)
-                window.appVerifier.reset(window.recaptchaWidgetId );
+                window.appVerifier.reset(window.recaptchaWidgetId);
                 self.setError('Unable to Send OTP!')
             });
     }
@@ -268,33 +272,34 @@ class RegisterForm extends React.Component {
         } else {
             return (
                 <section>
-                   <div class="alert alert-danger alert-dismissible fade show" role="alert" style={{visibility : this.state.responseError === null ? "hidden" : "visible"}}>{this.state.responseError}</div>
-                <div id="main-registration-container" style={{
-                    paddingTop: "150px"
-                }}>
-                    
-                    {this.state.loading && Loading('Signing in...')}
-                    <center><div id="register" style={{ visibility: this.state.loading ? 'hidden' : 'visible' }}>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style={{ visibility: this.state.responseError === null ? "hidden" : "visible" }}>{this.state.responseError}</div>
+                    <div id="main-registration-container">
 
-                        <h1 style={{ fontFamily: "Roboto", fontSize: "28px" }}><b>Please Enter</b></h1><br /><br />
-                        <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
+                        {this.state.loading && Loading('Signing in...')}
+                        <center><div id="register" style={{ visibility: this.state.loading ? 'hidden' : 'visible' }}>
 
-                            <input type="text" className="hi" name="name" fontSize="16px" placeholder="&#xF007;&nbsp;&nbsp;Full Name"  value={this.state.fields.name} onChange={this.handleChange} />
-                            <p className="errorMsg" style={{ textAlign: "left", marginLeft: "0.5em", marginTop: "0.5em" }}>{this.state.errors.name}</p><br />
-                            
-                            <input type="text" class="hi" id="inputError"  name="phoneNumber" placeholder="&#xF007;&nbsp;&nbsp;Phone Number"  value={this.state.fields.phoneNumber} onChange={this.handleChange} />
-                              
-                            <div className="errorMsg" style={{ textAlign: "left", marginLeft: "0.5em", marginTop: "0.5em" }}>{this.state.errors.phoneNumber}</div><br /><br />
+                            <h1 style={{ fontFamily: "Roboto", fontSize: "28px" }}><b>Please Enter</b></h1><br /><br />
+                            <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm} >
 
-                           
-                            <div id="recaptcha-container"></div>
-                            <button style={{ background: this.state.isFormValidated ? "rgb(255,248,0)" : "rgba(1, 5, 38, 0.05)" }} type="submit" 
-                            className="button" value="SEND OTP" disabled={!this.state.isFormValidated}><span class="buttonText"><b>SEND OTP</b></span></button>
-                        </form>
+                                <input type="text" className="hi" name="name" fontSize="16px" placeholder="&#xF007;&nbsp;&nbsp;Full Name" value={this.state.fields.name} onChange={this.handleChange} />
+                                <p className="errorMsg" style={{ textAlign: "left", marginLeft: "0.5em", marginTop: "0.5em" }}>{this.state.errors.name}</p><br />
 
-                        <br /><br />  <span id="skipOtpText" style={{ background: this.state.isFormValidated ? "yellow" : "white" }} disabled={!this.state.otpEntered} onClick={this.skipOtpAndVerify}>Skip OTP &amp;<b>Submit</b> </span><br /><br />
-                    </div></center>
-                </div>
+                                <input type="text" class="hi" id="inputError" name="phoneNumber" placeholder="&#xF007;&nbsp;&nbsp;Phone Number" value={this.state.fields.phoneNumber} onChange={this.handleChange} />
+
+                                <div className="errorMsg" style={{ textAlign: "left", marginLeft: "0.5em", marginTop: "0.5em" }}>{this.state.errors.phoneNumber}</div><br /><br />
+
+
+                               
+                                <button style={{ background: this.state.isFormValidated ? "rgb(255,248,0)" : "rgba(1, 5, 38, 0.05)" }} type="submit"
+                                    className="button" value="SEND OTP" disabled={!this.state.isFormValidated}>
+                                    <span class="buttonText" style={{ color: this.state.isFormValidated ? "rgba(1,5,38,1.0)" : "rgba(1, 5, 38, 0.5)" }}><b>SEND OTP</b></span></button>
+                            </form>
+
+                            <br /><br />  <span id="skipOtpText" style={{ background: this.state.isFormValidated ? "yellow" : "white", color: this.state.isFormValidated ? "rgba(1,5,38,1.0)" : "rgba(1, 5, 38, 0.5)" }}
+                                disabled={!this.state.otpEntered} onClick={this.skipOtpAndVerify}>Skip OTP &amp; <b>Submit</b> </span><br /><br />
+                        </div></center>
+                    </div>
+                    <div id="recaptcha-container"></div>
                 </section>
             );
         }
@@ -304,4 +309,4 @@ class RegisterForm extends React.Component {
 }
 
 
-export default RegisterForm;
+export default UserLoginForm;

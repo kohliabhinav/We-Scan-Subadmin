@@ -176,19 +176,18 @@ class Reset extends React.Component {
             return (
 
                 <section>
+                   
                     <div class="alert alert-danger alert-dismissible fade show" role="alert" style={{visibility : this.state.responseError === null ? "hidden" : "visible"}}>{this.state.responseError}</div>
-                    {this.state.loading && Loading('Reseting the Password...')}
+                   
                     <center>
-
-                        <div id="register" style={{
-                            marginTop: "150px",
-                            padding: "0px",
+                   
+                        <div style={{
                             visibility: this.state.loading ? 'hidden' : 'visible'
                         }}>
 
                             <h1 style={{ fontFamily: "Roboto", fontSize: "28px" }}><b>Reset Password</b></h1><br /><br />
 
-                            <form onSubmit={this.handleSubmit} style={{
+                            <form id = "reset" onSubmit={this.handleSubmit} style={{
                                 boxShadow: "5px 5px 40px 0 rgba(1, 5, 38, 0.1)", width: "328px", height: "444px", borderRadius: "20px",
                                 paddingTop: "2em"
                             }}>
@@ -221,9 +220,10 @@ class Reset extends React.Component {
 
                                 <button style={{ disabled: this.state.isFormValidated ? "false" : "true", background: this.state.isFormValidated ? 
                                 "rgb(255,248,0)" : "rgba(1, 5, 38, 0.05)" }} type="submit" className="button" disabled={!this.state.isFormValidated}>
-                                    <span class="buttonText" style={{ color: "black", width: "82px", height: "21px", fontFamily: "Roboto" }}><b>SUBMIT</b></span></button>
+                                    <span class="buttonText" style={{color : this.state.isFormValidated ? "rgba(1,5,38,1.0)" : "rgba(1, 5, 38, 0.5)"}}><b>SUBMIT</b></span></button>
                             </form>
                         </div></center>
+                        {this.state.loading && Loading('Reseting...')}
                 </section>
             );
         }
